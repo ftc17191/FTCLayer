@@ -1,4 +1,6 @@
-package org.ftc17191.ftclayer.hardware.motors;
+package org.ftc17191.ftclayer.hardware.motors.motorex;
+
+import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -11,36 +13,37 @@ import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
 public class MotorEx {
     public DcMotorEx motor;
     private MotorInfo motor_info;
+    public Exception NoMotorInfoSetException;
 
     /***********
      *
-     * Constructors, setters, and getters.
+     * Constructors
      *
      ***********/
 
 
 
     // Get motor, then set it
-    public MotorEx(HardwareMap map, String id)
+    public MotorEx(@NonNull HardwareMap map, @NonNull String id)
     {
         motor = map.get(DcMotorEx.class, id);
     }
 
     // Get motor and motorinfo, then set it
-    public MotorEx(HardwareMap map, String id, MotorInfo minfo)
+    public MotorEx(@NonNull HardwareMap map, @NonNull String id, @NonNull MotorInfo minfo)
     {
         motor = map.get(DcMotorEx.class, id);
         motor_info = minfo;
     }
 
     // Just set the motor
-    public MotorEx(DcMotorEx dcmotor)
+    public MotorEx(@NonNull DcMotorEx dcmotor)
     {
         motor = dcmotor;
     }
 
     // Just set the motor and Info
-    public MotorEx(DcMotorEx dcmotor, MotorInfo minfo)
+    public MotorEx(@NonNull DcMotorEx dcmotor, MotorInfo minfo)
     {
         motor = dcmotor;
         motor_info = minfo;
@@ -74,10 +77,11 @@ public class MotorEx {
      ***********/
 
     // Gets rpm then calculates it using MotorInfo class provided earlier
-    public void setMotorVelocityRPM (double rpm)
-    {
+    public void setMotorVelocityRPM (double rpm) throws Exception {
         setMotorRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
         if (motor_info == null) {
+            throw NoMotorInfoSetException;
+        } else {
             // Take tpr, multiply by rotations needed in a minute, since setVelocity uses seconds
             // divide by 60 to make it seconds
             motor.setVelocity(motor_info.getEncoder_ticks_per_rotation() * rpm / 60);
@@ -112,10 +116,4 @@ public class MotorEx {
     }
 }
 
-// Exceptions
 
-class NoMotorInfoSetException extends Exception {
-    NoMotorInfoSetException(String msg){
-        super(msg);
-    }
-}

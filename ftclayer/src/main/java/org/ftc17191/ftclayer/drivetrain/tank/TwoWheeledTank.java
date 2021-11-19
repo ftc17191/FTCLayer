@@ -1,7 +1,7 @@
 package org.ftc17191.ftclayer.drivetrain.tank;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.ftc17191.ftclayer.hardware.motors.MotorEx;
+import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
 
 public class TwoWheeledTank
 {

@@ -1,5 +1,9 @@
 package org.ftc17191.ftclayer.hardware.revhub;
 
+import androidx.annotation.NonNull;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import java.lang.IndexOutOfBoundsException;
 
@@ -152,33 +156,30 @@ public class RevHub
      *  Getters and setters
      *************/
 
-    public String getMotorId(int port)
-    {
+    public String getMotorId(int port) throws Exception {
         if (port <= 3 && port >= 0)
         {
             return motorIds[port];
         } else {
-            throw new IndexOutOfBoundsException("Parameter 'port' is either too big or small.");
+            throw NoPortIdSetException;
         }
     }
 
-    public String getServoId(int port)
-    {
+    public String getServoId(int port) throws Exception {
         if (port <= 5 && port >= 0)
         {
             return servoIds[port];
         } else {
-            throw new IndexOutOfBoundsException("Parameter 'port' is either too big or small.");
+            throw NoPortIdSetException;
         }
     }
 
-    public String getI2CId(int port)
-    {
+    public String getI2CId(int port) throws Exception {
         if (port <= 3 && port >= 0)
         {
             return i2cIds[port];
         } else {
-            throw new IndexOutOfBoundsException("Parameter 'port' is either too big or small.");
+            throw NoPortIdSetException;
         }
     }
 
@@ -186,5 +187,32 @@ public class RevHub
         this.hardwareMap = hardwareMap;
     }
 
+    /************
+     * Get Objects from port
+     ***********/
+
+    public MotorEx getMotorEx(int port) throws Exception {
+        if (this.hardwareMap == null)
+        {
+            throw NoHardwareMapSetException;
+        }
+        return new MotorEx(this.hardwareMap, getMotorId(port));
+    }
+
+    public MotorEx getMotorEx(@NonNull HardwareMap hardwareMap, int port) throws Exception {
+        return new MotorEx(hardwareMap, getMotorId(port));
+    }
+
+    public DcMotor getDcMotorEx(@NonNull HardwareMap hardwareMap, int port) throws Exception {
+        return hardwareMap.get(DcMotorEx.class, getMotorId(port));
+    }
+
+    public DcMotor getDcMotorEx(int port) throws Exception {
+        if (this.hardwareMap == null)
+        {
+            throw NoHardwareMapSetException;
+        }
+        return this.hardwareMap.get(DcMotorEx.class, getMotorId(port));
+    }
 
 }

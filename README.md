@@ -13,8 +13,11 @@ Want to create a repository with FTC Layer and Road Runner preinstalled?
 
 Want to install to a pre-existing Repository?
 
-Inside the Project root (The first build.gradle you see), find the lines that says:
+Inside the Project root (The first build.gradle you see), open the build.gradle file.
 ![Root build.gradle](/Documentation/img/root-build-gradle.png)
+
+
+Find the lines that says:
 ```
 allprojects {
     repositories {
@@ -23,6 +26,7 @@ allprojects {
         jcenter()
     }
 }
+
 ```
 
 Then, change it to:

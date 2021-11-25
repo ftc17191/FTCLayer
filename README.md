@@ -14,7 +14,7 @@ Want to create a repository with FTC Layer and Road Runner preinstalled?
 Want to install to a pre-existing Repository?
 
 Inside the Project root (The first build.gradle you see), open the build.gradle file.
-![Root build.gradle](/Documentation/img/root-build-gradle.png)
+![Root build.gradle](/Documentation/assets/img/root-build-gradle.png)
 
 
 Find the lines that says:
@@ -42,7 +42,7 @@ allprojects {
 ```
 
 Afterwards, open the _build.gradle_ file inside of _TeamCode_ folder.
-![TeamCode build.gradle](/Documentation/img/teamcode-build-gradle.png)
+![TeamCode build.gradle](/Documentation/assets/img/teamcode-build-gradle.png)
 
 Find the lines that say:
 ```
@@ -65,4 +65,4 @@ dependencies {
 
 Then preform a gradle sync by pressing the elephant in the top right.
 
-![Gradle Sync](/Documentation/img/gradle-sync.png)
+![Gradle Sync](/Documentation/assets/img/gradle-sync.png)

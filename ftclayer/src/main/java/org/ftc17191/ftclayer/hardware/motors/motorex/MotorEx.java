@@ -72,6 +72,29 @@ public class MotorEx {
 
     /***********
      *
+     * Position Based Functions
+     *
+     ***********/
+
+    public void goToPosition(int ticks)
+    {
+        setMotorRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setTargetPosition(ticks);
+        setMotorRunMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.
+        // Should give the motors max velocity
+    }
+
+    public void goToPosition(int ticks, int velocity)
+    {
+        setMotorRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setTargetPosition(ticks);
+        setMotorRunMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor.setVelocity(velocity);
+    }
+
+    /***********
+     *
      * Velocity Based Functions
      *
      ***********/

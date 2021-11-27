@@ -8,30 +8,27 @@ package org.ftc17191.ftclayer.hardware.motors.motorinfo;
 This class is a replacement for a struct since java doesn't have those.
  */
 
-public class MotorInfo
-{
-    private String name;
-    private double torque_kg_cm;
-    private double encoder_ticks_per_rotation;
-    private int rpm;
+public class MotorInfo {
+    private final String name;
+    private final double torqueKgCm;
+    private final Float encoderTicksPerRotation;
+    private final int rpm;
 
     // Constructors
-    public MotorInfo(String motor_name, double torque,
-                     Float ticks_per_rotation, int rotations_per_minute)
-    {
-        name = motor_name;
-        torque_kg_cm = torque;
-        encoder_ticks_per_rotation = ticks_per_rotation;
-        rpm = rotations_per_minute;
+    public MotorInfo(String motorName, double torque,
+                     Float ticksPerRotation, int rotationsPerMinute) {
+        name = motorName;
+        torqueKgCm = torque;
+        encoderTicksPerRotation = ticksPerRotation;
+        rpm = rotationsPerMinute;
     }
 
     public MotorInfo(double torque,
-                     double ticks_per_rotation, int rotations_per_minute)
-    {
+                     Float ticksPerRotation, int rotationsPerMinute) {
         name = null;
-        torque_kg_cm = torque;
-        encoder_ticks_per_rotation = ticks_per_rotation;
-        rpm = rotations_per_minute;
+        torqueKgCm = torque;
+        encoderTicksPerRotation = ticksPerRotation;
+        rpm = rotationsPerMinute;
     }
 
     // Getter Functions
@@ -39,16 +36,16 @@ public class MotorInfo
         return name;
     }
 
-    public double getTorque_kg_cm() {
-        return torque_kg_cm;
+    public double getTorqueKgCm() {
+        return torqueKgCm;
     }
 
     public int getRpm() {
         return rpm;
     }
 
-    public double getEncoder_ticks_per_rotation() {
-        return encoder_ticks_per_rotation;
+    public Float getEncoderTicksPerRotation() {
+        return encoderTicksPerRotation;
     }
 
 }

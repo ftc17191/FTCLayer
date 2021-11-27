@@ -3,8 +3,7 @@ package org.ftc17191.ftclayer.hardware.motors.tetrix;
 import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
 
 
-public class TorqueNado
-{
+public class TorqueNado {
     public MotorInfo TorqueNado60_1 = new MotorInfo(
             "TorqueNADO",
             50.40f,

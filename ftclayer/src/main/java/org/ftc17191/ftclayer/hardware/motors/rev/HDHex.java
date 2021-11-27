@@ -7,8 +7,6 @@ import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
 public class HDHex {
 
 
-
-
     public MotorInfo HDHexNoGearbox = new MotorInfo(
             "HD Hex No Gearbox",
             1.07f,

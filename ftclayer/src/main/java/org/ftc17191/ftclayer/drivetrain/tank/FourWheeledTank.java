@@ -46,20 +46,20 @@ public class FourWheeledTank {
 
 
     // Sets motor run mode
-    private void setRunMode(DcMotor.RunMode mode) {
-        frontRightMotor.dcMotor.setMode(mode);
-        frontLeftMotor.dcMotor.setMode(mode);
-        backRightMotor.dcMotor.setMode(mode);
-        backLeftMotor.dcMotor.setMode(mode);
+    public void setRunMode(DcMotor.RunMode mode) {
+        frontRightMotor.setMode(mode);
+        frontLeftMotor.setMode(mode);
+        backRightMotor.setMode(mode);
+        backLeftMotor.setMode(mode);
     }
 
 
     // Drives based on 2 power statements
     public void powerDrive(double right_power, double left_power) {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRightMotor.dcMotor.setPower(right_power);
-        frontLeftMotor.dcMotor.setPower(left_power);
-        backRightMotor.dcMotor.setPower(right_power);
-        backLeftMotor.dcMotor.setPower(left_power);
+        frontRightMotor.setPower(right_power);
+        frontLeftMotor.setPower(left_power);
+        backRightMotor.setPower(right_power);
+        backLeftMotor.setPower(left_power);
     }
 }

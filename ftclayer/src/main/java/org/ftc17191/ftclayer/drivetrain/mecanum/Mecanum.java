@@ -42,20 +42,20 @@ public class Mecanum {
     }
 
     // Sets motor run mode
-    private void setRunMode(DcMotor.RunMode mode) {
-        frontRightMotor.dcMotor.setMode(mode);
-        frontLeftMotor.dcMotor.setMode(mode);
-        backRightMotor.dcMotor.setMode(mode);
-        backLeftMotor.dcMotor.setMode(mode);
+    public void setRunMode(DcMotor.RunMode mode) {
+        frontRightMotor.setMode(mode);
+        frontLeftMotor.setMode(mode);
+        backRightMotor.setMode(mode);
+        backLeftMotor.setMode(mode);
     }
 
 
     public void powerDrive(double forwardPower, double strafePower, double turningPower) {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRightMotor.dcMotor.setPower(-forwardPower - strafePower - turningPower);
-        frontLeftMotor.dcMotor.setPower(forwardPower - strafePower - turningPower);
-        backRightMotor.dcMotor.setPower(-forwardPower + strafePower - turningPower);
-        backLeftMotor.dcMotor.setPower(forwardPower + strafePower - turningPower);
+        frontRightMotor.setPower(-forwardPower - strafePower - turningPower);
+        frontLeftMotor.setPower(forwardPower - strafePower - turningPower);
+        backRightMotor.setPower(-forwardPower + strafePower - turningPower);
+        backLeftMotor.setPower(forwardPower + strafePower - turningPower);
     }
 
 }

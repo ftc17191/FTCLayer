@@ -5,13 +5,13 @@ FTC Layer is designed to make programming easier, less time consuming, and simpl
 
 ## Install
 
-Want to create a repository with FTC Layer preinstalled?
+### Want to create a repository with FTC Layer preinstalled?
 [Click Here](https://github.com/ftc17191/FTCLayer-quickstart)
 
-Want to create a repository with FTC Layer and Road Runner preinstalled?
+### Want to create a repository with FTC Layer and Road Runner preinstalled?
 [Click Here](https://github.com/ftc17191/FTCLayer-road-runner-quickstart)
 
-Want to install to a pre-existing Repository?
+### Want to install to a pre-existing Repository?
 
 Inside the Project root (The first build.gradle you see), open the build.gradle file.
 ![Root build.gradle](/Documentation/assets/img/root-build-gradle.png)

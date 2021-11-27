@@ -6,8 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
 
-public class SimulatedServo
-{
+public class SimulatedServo {
     MotorEx motor;
 
     // Servo related vars
@@ -18,27 +17,42 @@ public class SimulatedServo
     int maxPositionTicks;
 
 
-
-    SimulatedServo(HardwareMap hardwareMap, String id, int minPositionTicks, int maxPositionTicks)
-    {
+    SimulatedServo(HardwareMap hardwareMap, String id, int minPositionTicks, int maxPositionTicks) {
         motor = new MotorEx(hardwareMap, id);
         direction = Servo.Direction.FORWARD;
     }
 
-    SimulatedServo(MotorEx motorEx, int minPositionTicks, int maxPositionTicks)
-    {
+    SimulatedServo(MotorEx motorEx, int minPositionTicks, int maxPositionTicks) {
         motor = motorEx;
         direction = Servo.Direction.FORWARD;
     }
 
-    SimulatedServo(DcMotorEx dcMotor, int minPositionTicks, int maxPositionTicks)
-    {
+    SimulatedServo(DcMotorEx dcMotor, int minPositionTicks, int maxPositionTicks) {
         motor = new MotorEx(dcMotor);
         direction = Servo.Direction.FORWARD;
     }
 
-    public void setPosition(double pos)
-    {
+    /*
+    The following functions are in the SDK, Basic getters and setters
+    I've implemented them to keep this class like a servo.
+     */
+    Servo.Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Servo.Direction direction) {
+        this.direction = direction;
+    }
+
+    int getPortNumber() {
+        return motor.dcMotor.getPortNumber();
+    }
+
+    double getPosition() {
+        return position;
+    }
+
+    public void setPosition(double pos) {
         position = pos;
         int ticks;
 
@@ -56,18 +70,6 @@ public class SimulatedServo
         motor.goToPosition(ticks);
     }
 
-    public void setDirection(Servo.Direction direction) {
-        this.direction = direction;
-    }
-
-
-    /*
-    The following functions are in the SDK, Basic getters and setters
-     */
-    Servo.Direction getDirection() { return direction; }
-    int getPortNumber() { return motor.motor.getPortNumber(); }
-    double getPosition() { return position; }
     // Not going to implement scaleRange yet, maybe later
-
 
 }

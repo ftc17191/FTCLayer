@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import java.lang.IndexOutOfBoundsException;
 
 import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
@@ -19,13 +20,12 @@ import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
  * it may be less cleaner in certain scenarios but it'll prevent bugs when changing ids.
  */
 
-public class RevHub
-{
+public class RevHub {
     // Ids and hardware map
     private HardwareMap hardwareMap;
-    private String motorIds[];
-    private String servoIds[];
-    private String i2cIds[];
+    private final String[] motorIds;
+    private final String[] servoIds;
+    private final String[] i2cIds;
 
     // Exceptions for random stuff
     public Exception NoHardwareMapSetException;
@@ -33,8 +33,7 @@ public class RevHub
 
     // Enum for telling motor i2c and servos apart
 
-    public enum PORT
-    {
+    public enum PORT {
         MOTOR, SERVO, I2C
     }
 
@@ -54,8 +53,7 @@ public class RevHub
            String i2c0,
            String i2c1,
            String i2c2,
-           String i2c3)
-    {
+           String i2c3) {
         // Initialize arrays and hardware map
         this.hardwareMap = hardwareMap;
 
@@ -94,8 +92,7 @@ public class RevHub
            String i2c0,
            String i2c1,
            String i2c2,
-           String i2c3)
-    {
+           String i2c3) {
         // Initialize arrays
         motorIds = new String[4];
         servoIds = new String[6];
@@ -121,10 +118,9 @@ public class RevHub
 
     // Take in arrays instead of.... up there
     RevHub(HardwareMap hardwareMap,
-           String motorIds[],
-           String servoIds[],
-           String i2cIds[]) throws Exception
-    {
+           String[] motorIds,
+           String[] servoIds,
+           String[] i2cIds) throws Exception {
         // Check if index on array is out of bounds, they must include null on not included motors
         if (motorIds.length == 4 && servoIds.length == 6 && i2cIds.length == 4) {
             this.motorIds = motorIds;
@@ -138,15 +134,14 @@ public class RevHub
 
 
     // Same thing but without hardware map
-    RevHub(String motorids[],
-           String servoids[],
-           String i2cids[]) throws Exception
-    {
+    RevHub(String[] motorIds,
+           String[] servoIds,
+           String[] i2cIds) throws Exception {
         // Check if index on array is out of bounds, they must include null on not included motors
-        if (motorids.length == 4 && servoids.length == 6 && i2cids.length == 4) {
-            motorIds = motorids;
-            servoIds = servoids;
-            i2cIds = i2cids;
+        if (motorIds.length == 4 && servoIds.length == 6 && i2cIds.length == 4) {
+            this.motorIds = motorIds;
+            this.servoIds = servoIds;
+            this.i2cIds = i2cIds;
         } else {
             throw new IndexOutOfBoundsException("Index on RevHub out of bounds.");
         }
@@ -157,8 +152,7 @@ public class RevHub
      *************/
 
     public String getMotorId(int port) throws Exception {
-        if (port <= 3 && port >= 0)
-        {
+        if (port <= 3 && port >= 0) {
             return motorIds[port];
         } else {
             throw NoPortIdSetException;
@@ -166,8 +160,7 @@ public class RevHub
     }
 
     public String getServoId(int port) throws Exception {
-        if (port <= 5 && port >= 0)
-        {
+        if (port <= 5 && port >= 0) {
             return servoIds[port];
         } else {
             throw NoPortIdSetException;
@@ -175,8 +168,7 @@ public class RevHub
     }
 
     public String getI2CId(int port) throws Exception {
-        if (port <= 3 && port >= 0)
-        {
+        if (port <= 3 && port >= 0) {
             return i2cIds[port];
         } else {
             throw NoPortIdSetException;
@@ -192,8 +184,7 @@ public class RevHub
      ***********/
 
     public MotorEx getMotorEx(int port) throws Exception {
-        if (this.hardwareMap == null)
-        {
+        if (this.hardwareMap == null) {
             throw NoHardwareMapSetException;
         }
         return new MotorEx(this.hardwareMap, getMotorId(port));
@@ -208,8 +199,7 @@ public class RevHub
     }
 
     public DcMotor getDcMotorEx(int port) throws Exception {
-        if (this.hardwareMap == null)
-        {
+        if (this.hardwareMap == null) {
             throw NoHardwareMapSetException;
         }
         return this.hardwareMap.get(DcMotorEx.class, getMotorId(port));

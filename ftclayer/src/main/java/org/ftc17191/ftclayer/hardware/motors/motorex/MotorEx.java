@@ -11,9 +11,9 @@ import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
 
 // A more advanced DcMotorEx
 public class MotorEx {
-    public DcMotorEx motor;
-    private MotorInfo motor_info;
+    public DcMotorEx dcMotor;
     public Exception NoMotorInfoSetException;
+    private MotorInfo motorInfo;
 
     /***********
      *
@@ -21,32 +21,26 @@ public class MotorEx {
      *
      ***********/
 
-
-
-    // Get motor, then set it
-    public MotorEx(@NonNull HardwareMap map, @NonNull String id)
-    {
-        motor = map.get(DcMotorEx.class, id);
+    // Get dcMotor, then set it
+    public MotorEx(@NonNull HardwareMap hardwareMap, @NonNull String id) {
+        dcMotor = hardwareMap.get(DcMotorEx.class, id);
     }
 
-    // Get motor and motorinfo, then set it
-    public MotorEx(@NonNull HardwareMap map, @NonNull String id, @NonNull MotorInfo minfo)
-    {
-        motor = map.get(DcMotorEx.class, id);
-        motor_info = minfo;
+    // Get dcMotor and motorinfo, then set it
+    public MotorEx(@NonNull HardwareMap hardwareMap, @NonNull String id, @NonNull MotorInfo motorInfo) {
+        dcMotor = hardwareMap.get(DcMotorEx.class, id);
+        this.motorInfo = motorInfo;
     }
 
-    // Just set the motor
-    public MotorEx(@NonNull DcMotorEx dcmotor)
-    {
-        motor = dcmotor;
+    // Just set the dcMotor
+    public MotorEx(@NonNull DcMotorEx dcMotor) {
+        this.dcMotor = dcMotor;
     }
 
-    // Just set the motor and Info
-    public MotorEx(@NonNull DcMotorEx dcmotor, MotorInfo minfo)
-    {
-        motor = dcmotor;
-        motor_info = minfo;
+    // Just set the dcMotor and Info
+    public MotorEx(@NonNull DcMotorEx dcMotor, MotorInfo motorInfo) {
+        this.dcMotor = dcMotor;
+        this.motorInfo = motorInfo;
     }
 
     /***********
@@ -56,11 +50,9 @@ public class MotorEx {
      ***********/
 
     // Checks if already set instead of calling the sdk which takes about 50 ms.
-    public void setMotorRunMode(DcMotor.RunMode mode)
-    {
-        if (motor.getMode() != mode)
-        {
-            motor.setMode(mode);
+    public void setMotorRunMode(DcMotor.RunMode mode) {
+        if (dcMotor.getMode() != mode) {
+            dcMotor.setMode(mode);
         }
     }
 
@@ -76,21 +68,19 @@ public class MotorEx {
      *
      ***********/
 
-    public void goToPosition(int ticks)
-    {
+    public void goToPosition(int ticks) {
         setMotorRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motor.setTargetPosition(ticks);
+        dcMotor.setTargetPosition(ticks);
         setMotorRunMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.
+        dcMotor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.
         // Should give the motors max velocity
     }
 
-    public void goToPosition(int ticks, int velocity)
-    {
+    public void goToPosition(int ticks, int tpm) {
         setMotorRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motor.setTargetPosition(ticks);
+        dcMotor.setTargetPosition(ticks);
         setMotorRunMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.setVelocity(velocity);
+        dcMotor.setVelocity(tpm);
     }
 
     /***********
@@ -100,42 +90,37 @@ public class MotorEx {
      ***********/
 
     // Gets rpm then calculates it using MotorInfo class provided earlier
-    public void setMotorVelocityRPM (double rpm) throws Exception {
+    public void setMotorVelocityRPM(double rpm) throws Exception {
         setMotorRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        if (motor_info == null) {
+        if (motorInfo == null) {
             throw NoMotorInfoSetException;
         } else {
             // Take tpr, multiply by rotations needed in a minute, since setVelocity uses seconds
             // divide by 60 to make it seconds
-            motor.setVelocity(motor_info.getEncoder_ticks_per_rotation() * rpm / 60);
+            dcMotor.setVelocity(motorInfo.getEncoderTicksPerRotation() * rpm / 60);
         }
     }
 
 
     // Gets rpm then calculates it using MotorInfo class
-    public void setMotorVelocityRPM(double rpm, MotorInfo motorinfo)
-    {
+    public void setMotorVelocityRPM(double rpm, MotorInfo motorInfo) {
         setMotorRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // Take tpr, multiply by rotations needed in a minute, since setVelocity uses seconds
         // divide by 60 to make it seconds
-        motor.setVelocity((motorinfo.getEncoder_ticks_per_rotation() * rpm ) / 60);
+        dcMotor.setVelocity((motorInfo.getEncoderTicksPerRotation() * rpm) / 60);
     }
 
     // Sets Ticks per Minute
-    public void setMotorVelocityTPM(double tpm)
-    {
+    public void setMotorVelocityTPM(double tpm) {
         setMotorRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motor.setVelocity(tpm / 60);
+        dcMotor.setVelocity(tpm / 60);
     }
 
 
-
-
-    // checks runmoide like above
-    public void setMotorPower(double power)
-    {
+    // checks run mode like above
+    public void setMotorPower(double power) {
         setMotorRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motor.setPower(power);
+        dcMotor.setPower(power);
     }
 }
 

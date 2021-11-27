@@ -4,8 +4,7 @@ import org.ftc17191.ftclayer.hardware.motors.motorinfo.MotorInfo;
 
 
 // Yellow jackets
-public class YellowJacket
-{
+public class YellowJacket {
 
     // 5202 series
     public MotorInfo yellow_jacket_5202_0002_0001 = new MotorInfo(
@@ -77,7 +76,6 @@ public class YellowJacket
             30);
 
 
-
     // 5203 Series
     public MotorInfo yellow_jacket_5203_2402_0001 = new MotorInfo(
             "Yellow Jacket 5202-2402-0001",
@@ -146,7 +144,6 @@ public class YellowJacket
             250.0f,
             5281.1f,
             30);
-
 
 
     // 5204 series

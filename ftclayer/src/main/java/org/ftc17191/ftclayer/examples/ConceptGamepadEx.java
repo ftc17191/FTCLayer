@@ -5,14 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.internal.ui.GamepadUser;
-import org.ftc17191.ftclayer.gamepad.*;
+import org.ftc17191.ftclayer.gamepad.GamepadButtons;
+import org.ftc17191.ftclayer.gamepad.GamepadEx;
 
 
 @TeleOp(name = "Concept GamepadEx", group = "Concept")
 @Disabled // Remove this Line if using as an opmode
-public class ConceptGamepadEx extends OpMode
-{
-    GamepadEx gpad = new GamepadEx(GamepadUser.ONE);
+public class ConceptGamepadEx extends OpMode {
+    GamepadEx gamepadEx = new GamepadEx(GamepadUser.ONE);
 
     @Override
     public void init() {
@@ -22,10 +22,10 @@ public class ConceptGamepadEx extends OpMode
 
     @Override
     public void loop() {
-        telemetry.addLine("Is a pressed?");
+        telemetry.addLine("Is A pressed?");
 
         // The ? and the : means "If the button is activated, say 'yes' if not, say 'no'. "
-        telemetry.addLine(gpad.isButtonActivated(GamepadButtons.GamepadDigital.A)
+        telemetry.addLine(gamepadEx.isButtonActivated(GamepadButtons.GamepadDigital.A)
                 ? "Yes it is!" : "Nope, press A");
 
     }

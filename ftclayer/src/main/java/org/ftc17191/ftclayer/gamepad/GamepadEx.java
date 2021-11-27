@@ -6,19 +6,16 @@ import org.firstinspires.ftc.robotcore.internal.ui.GamepadUser;
 import org.ftc17191.ftclayer.util.Util;
 
 
-public class GamepadEx
-{
+public class GamepadEx {
 
     Gamepad gamepad = new Gamepad();
 
-    public GamepadEx(GamepadUser user)
-    {
+    public GamepadEx(GamepadUser user) {
         gamepad.setUser(user);
     }
 
 
-    public boolean isButtonActivated(GamepadButtons.GamepadDigital button)
-    {
+    public boolean isButtonActivated(GamepadButtons.GamepadDigital button) {
 
 
         switch (button) {
@@ -79,11 +76,11 @@ public class GamepadEx
 
 
             case RIGHT_STICK_ACTIVATED:
-                return Util.toBoolean(gamepad.right_stick_x)^Util.toBoolean(gamepad.right_stick_y);
+                return Util.toBoolean(gamepad.right_stick_x) ^ Util.toBoolean(gamepad.right_stick_y);
 
 
             case LEFT_STICK_ACTIVATED:
-                return Util.toBoolean(gamepad.left_stick_x)^Util.toBoolean(gamepad.left_stick_y);
+                return Util.toBoolean(gamepad.left_stick_x) ^ Util.toBoolean(gamepad.left_stick_y);
 
 
             case RIGHT_TRIGGER_ACTIVATED:
@@ -97,13 +94,10 @@ public class GamepadEx
         return false;
     }
 
-    public float getAnalogFloat(GamepadButtons.GamepadAnalog analog)
-    {
-        switch(gamepad.getUser())
-        {
+    public float getAnalogFloat(GamepadButtons.GamepadAnalog analog) {
+        switch (gamepad.getUser()) {
             case ONE:
-                switch (analog)
-                {
+                switch (analog) {
                     case LEFT_STICK_X:
                         return gamepad.left_stick_x;
                     case LEFT_STICK_Y:
@@ -121,8 +115,7 @@ public class GamepadEx
 
 
             case TWO:
-                switch (analog)
-                {
+                switch (analog) {
                     case LEFT_STICK_X:
                         return gamepad.left_stick_x;
                     case LEFT_STICK_Y:

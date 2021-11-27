@@ -11,23 +11,23 @@ public class TwoWheeledTank {
     public MotorEx leftMotor;
 
     TwoWheeledTank(HardwareMap hardwareMap,
-                   String right_motor,
-                   String left_motor) {
-        rightMotor = new MotorEx(hardwareMap, right_motor);
-        leftMotor = new MotorEx(hardwareMap, left_motor);
+                   String rightMotor,
+                   String leftMotor) {
+        this.rightMotor = new MotorEx(hardwareMap, rightMotor);
+        this.leftMotor = new MotorEx(hardwareMap, leftMotor);
     }
 
     // Makes MotorEx's based on already existing DcMotors
-    public TwoWheeledTank(DcMotorEx right_motor,
-                          DcMotorEx left_motor) {
-        rightMotor = new MotorEx(right_motor);
-        leftMotor = new MotorEx(left_motor);
+    public TwoWheeledTank(DcMotorEx rightMotor,
+                          DcMotorEx leftMotor) {
+        this.rightMotor = new MotorEx(rightMotor);
+        this.leftMotor = new MotorEx(leftMotor);
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
 
     // Sets motor run mode
-    private void setRunMode(DcMotor.RunMode mode) {
+    public void setRunMode(DcMotor.RunMode mode) {
         rightMotor.dcMotor.setMode(mode);
         leftMotor.dcMotor.setMode(mode);
     }

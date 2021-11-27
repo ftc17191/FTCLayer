@@ -10,27 +10,27 @@
  */
 
 
-
 package org.ftc17191.ftclayer.examples;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.ftc17191.ftclayer.drivetrain.mecanum.Mecanum;
 
 
-@TeleOp(name="Concept Mecanum", group="Concept")
+@TeleOp(name = "Concept Mecanum", group = "Concept")
 @Disabled // Remove this Line if using as an opmode
-public class ConceptMecanum extends OpMode
-{
+public class ConceptMecanum extends OpMode {
     Mecanum train;
 
     @Override
     public void init() {
         train = new Mecanum(hardwareMap,
-                "fr_motor",
-                "fl_motor",
-                "br_motor",
-                "bl_motor");
+                "frontRightMotor",
+                "frontLeftMotor",
+                "backRightMotor",
+                "backLeftMotor");
 
         telemetry.addLine("Press Start to begin!");
         telemetry.update();
@@ -40,10 +40,10 @@ public class ConceptMecanum extends OpMode
     public void loop() {
         train.powerDrive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
-        telemetry.addLine("Fr Motor Power: " + train.fr_motor.motor.getPower());
-        telemetry.addLine("Fl Motor Power: " + train.fl_motor.motor.getPower());
-        telemetry.addLine("Br Motor Power: " + train.br_motor.motor.getPower());
-        telemetry.addLine("Bl Motor Power: " + train.bl_motor.motor.getPower());
+        telemetry.addLine("Fr Motor Power: " + train.frontRightMotor.dcMotor.getPower());
+        telemetry.addLine("Fl Motor Power: " + train.frontLeftMotor.dcMotor.getPower());
+        telemetry.addLine("Br Motor Power: " + train.backRightMotor.dcMotor.getPower());
+        telemetry.addLine("Bl Motor Power: " + train.backLeftMotor.dcMotor.getPower());
         telemetry.update();
     }
 

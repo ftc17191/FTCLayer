@@ -7,16 +7,16 @@ So here is the rules:
 
 ## 1. Gracious Professionalism!!!
 
-Any contributor found to be not using Gracious Professionalism when contributing, discriminating, harassing, or not being welcoming to any individual or group, will not be allowed to contribute, and will have their credits and name be removed from FTC Layer.
+Any contributor found to be not using Gracious Professionalism when contributing, or discriminating, harassing, or not being welcoming to any individual or group, will not be allowed to contribute, and will have their credits and name be removed from FTC Layer.
 
 ## 2. Keep it clean!
 
-FTC Layer uses [Oracle naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html),If you aren't using [Oracle naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html), we ask you rewrite the code to follow those conventions.
+FTC Layer uses [Oracle naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html), If you aren't using [Oracle naming conventions](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html), we ask you rewrite the code to follow those conventions.
 
 Do use comments, they aren't necessary for all functions or variables, but use them as a way to explain complicated pieces of code.
 
 ## 3. Metric, not customary.
-FTC Layer uses metric, not customary, make sure functions use metric. Although conversion functions are allowed, pleas use metric as the default.
+FTC Layer uses metric, not customary, make sure functions use metric. Although conversion functions are allowed, please use metric as the default.
 
 ## 4. Branch names
 When naming the branch you are pushing to, use the following.

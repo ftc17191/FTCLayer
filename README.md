@@ -14,7 +14,10 @@ FTC Layer is designed to make programming easier, less time consuming, and simpl
 ### Want to install to a pre-existing Repository?
 
 Inside the Project root (The first build.gradle you see), open the build.gradle file.
+
+
 ![Root build.gradle](/Documentation/assets/img/root-build-gradle.png)
+
 
 
 Find the lines that says:

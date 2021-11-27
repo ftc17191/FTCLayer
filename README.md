@@ -45,6 +45,7 @@ allprojects {
 ```
 
 Afterwards, open the _build.gradle_ file inside of _TeamCode_ folder.
+
 ![TeamCode build.gradle](/Documentation/assets/img/teamcode-build-gradle.png)
 
 Find the lines that say:

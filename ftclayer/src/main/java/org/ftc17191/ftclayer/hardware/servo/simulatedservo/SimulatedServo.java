@@ -17,17 +17,17 @@ public class SimulatedServo {
     int maxPositionTicks;
 
 
-    SimulatedServo(HardwareMap hardwareMap, String id, int minPositionTicks, int maxPositionTicks) {
+    public SimulatedServo(HardwareMap hardwareMap, String id, int minPositionTicks, int maxPositionTicks) {
         motor = new MotorEx(hardwareMap, id);
         direction = Servo.Direction.FORWARD;
     }
 
-    SimulatedServo(MotorEx motorEx, int minPositionTicks, int maxPositionTicks) {
+    public SimulatedServo(MotorEx motorEx, int minPositionTicks, int maxPositionTicks) {
         motor = motorEx;
         direction = Servo.Direction.FORWARD;
     }
 
-    SimulatedServo(DcMotorEx dcMotor, int minPositionTicks, int maxPositionTicks) {
+    public SimulatedServo(DcMotorEx dcMotor, int minPositionTicks, int maxPositionTicks) {
         motor = new MotorEx(dcMotor);
         direction = Servo.Direction.FORWARD;
     }
@@ -36,7 +36,7 @@ public class SimulatedServo {
     The following functions are in the SDK, Basic getters and setters
     I've implemented them to keep this class like a servo.
      */
-    Servo.Direction getDirection() {
+    public Servo.Direction getDirection() {
         return direction;
     }
 
@@ -44,11 +44,11 @@ public class SimulatedServo {
         this.direction = direction;
     }
 
-    int getPortNumber() {
+    public int getPortNumber() {
         return motor.dcMotor.getPortNumber();
     }
 
-    double getPosition() {
+    public double getPosition() {
         return position;
     }
 

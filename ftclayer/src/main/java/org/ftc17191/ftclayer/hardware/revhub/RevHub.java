@@ -39,7 +39,7 @@ public class RevHub {
 
     // Apply NULL if no motor or servo is on the port.
     // This constructor is terrible and inefficient but its good to make stuff easier for newbs
-    RevHub(HardwareMap hardwareMap,
+    public RevHub(HardwareMap hardwareMap,
            String motor0,
            String motor1,
            String motor2,
@@ -79,7 +79,7 @@ public class RevHub {
     }
 
     // Same thing as above, just without hardware
-    RevHub(String motor0,
+    public RevHub(String motor0,
            String motor1,
            String motor2,
            String motor3,
@@ -117,7 +117,7 @@ public class RevHub {
 
 
     // Take in arrays instead of.... up there
-    RevHub(HardwareMap hardwareMap,
+    public RevHub(HardwareMap hardwareMap,
            String[] motorIds,
            String[] servoIds,
            String[] i2cIds) throws Exception {
@@ -134,7 +134,7 @@ public class RevHub {
 
 
     // Same thing but without hardware map
-    RevHub(String[] motorIds,
+    public RevHub(String[] motorIds,
            String[] servoIds,
            String[] i2cIds) throws Exception {
         // Check if index on array is out of bounds, they must include null on not included motors

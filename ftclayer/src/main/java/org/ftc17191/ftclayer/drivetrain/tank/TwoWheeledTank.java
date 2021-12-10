@@ -10,7 +10,7 @@ public class TwoWheeledTank {
     public MotorEx rightMotor;
     public MotorEx leftMotor;
 
-    TwoWheeledTank(HardwareMap hardwareMap,
+    public TwoWheeledTank(HardwareMap hardwareMap,
                    String rightMotor,
                    String leftMotor) {
         this.rightMotor = new MotorEx(hardwareMap, rightMotor);

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
 
 public class SimulatedServo {
-    MotorEx motor;
+    public MotorEx motor; // public for debug purposes
 
     // Servo related vars
     double position;

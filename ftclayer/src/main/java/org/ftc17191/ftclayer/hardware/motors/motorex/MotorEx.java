@@ -24,23 +24,31 @@ public class MotorEx {
     // Get dcMotor, then set it
     public MotorEx(@NonNull HardwareMap hardwareMap, @NonNull String id) {
         dcMotor = hardwareMap.get(DcMotorEx.class, id);
+        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     // Get dcMotor and motorinfo, then set it
     public MotorEx(@NonNull HardwareMap hardwareMap, @NonNull String id, @NonNull MotorInfo motorInfo) {
         dcMotor = hardwareMap.get(DcMotorEx.class, id);
         this.motorInfo = motorInfo;
+        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     // Just set the dcMotor
     public MotorEx(@NonNull DcMotorEx dcMotor) {
         this.dcMotor = dcMotor;
+        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     // Just set the dcMotor and Info
     public MotorEx(@NonNull DcMotorEx dcMotor, MotorInfo motorInfo) {
         this.dcMotor = dcMotor;
         this.motorInfo = motorInfo;
+        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
 
     /***********
@@ -75,7 +83,6 @@ public class MotorEx {
      ***********/
 
     public void goToPosition(int ticks) {
-        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         dcMotor.setTargetPosition(ticks);
         setMode(DcMotor.RunMode.RUN_TO_POSITION);
         dcMotor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.

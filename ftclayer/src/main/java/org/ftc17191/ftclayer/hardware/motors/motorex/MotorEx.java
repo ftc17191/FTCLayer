@@ -85,33 +85,16 @@ public class MotorEx {
     public void goToPosition(int ticks) {
         dcMotor.setTargetPosition(ticks);
         setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        dcMotor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.
+        dcMotor.setPower(1); // Dunno velocity. We're gonna go with.. this number I guess.
         // Should give the motors max velocity
 
         // Wait till we're done
-        while (dcMotor.isBusy())
-        {
-            dcMotor.setVelocity(1000000); // Dunno velocity. We're gonna go with.. this number I guess.
-        }
+        while (dcMotor.isBusy()) {}
 
-        dcMotor.setVelocity(0);
+        dcMotor.setPower(0);
 
     }
 
-    public void goToPosition(int ticks, int tpm) {
-        setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcMotor.setTargetPosition(ticks);
-        setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        dcMotor.setVelocity(tpm);
-
-        // Wait till we're done
-        while (dcMotor.isBusy())
-        {
-            dcMotor.setVelocity(tpm);
-        }
-
-        dcMotor.setVelocity(0);
-    }
 
     /***********
      *
@@ -143,6 +126,8 @@ public class MotorEx {
     // Sets Ticks per Minute
     public void setMotorVelocityTPM(double tpm) {
         setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        // Velocity uses Ticks per second so divide by 60
         dcMotor.setVelocity(tpm / 60);
     }
 

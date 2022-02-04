@@ -3,6 +3,9 @@
 Welcome! FTC Layer is an open source project designed to provide abstractions over the base [FTC SDK](https://github.com/FIRST-Tech-Challenge/FtcRobotController)
 FTC Layer is designed to make programming easier, less time consuming, and simpler.
 
+
+## Check out [our website](http://ftclayer-docs.pages.dev)
+
 ## Install
 
 ### Want to create a repository with FTC Layer preinstalled?

@@ -4,6 +4,10 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+
 // Thanks to FTC Lib,
 // We used FTC Lib's IMU class and the ConceptBNO015IMU as a reference when making this one.
 
@@ -27,11 +31,27 @@ public class RevImu {
     }
 
     public double getHeading() {
-        return imu.getAngularOrientation().firstAngle;
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).firstAngle;
     }
 
     public double getHeadingRadians() {
-        return Math.toRadians(imu.getAngularOrientation().firstAngle);
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).firstAngle;
+    }
+
+    public double getPitch() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).secondAngle;
+    }
+
+    public double getPitchRadians() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).secondAngle;
+    }
+
+    public double getRoll() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle;
+    }
+
+    public double getRollRadians() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).thirdAngle;
     }
 
 }

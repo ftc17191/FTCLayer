@@ -106,31 +106,12 @@ public class Mecanum {
             calculatedForwardPower = forwardPower * Math.cos(heading)
                     + -strafePower * Math.sin(heading);
             calculatedStrafePower = forwardPower * Math.sin(heading)
-                    + strafePower * Math.cos(heading);
+                    + -strafePower * Math.cos(heading);
 
             powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
         } else {
             powerDrive(0, 0, 0);
         }
-    }
-
-
-    public void powerAbsoluteDrive(double forwardPower, double strafePower, double turningPower, double radians)
-    {
-        // This calculates the powers based off the position of the imu given earlier.
-
-        // Turning is kept the same, as its the same movement no matter the heading
-        // Check if the imu was specified
-
-        double calculatedForwardPower, calculatedStrafePower;
-
-        calculatedForwardPower = forwardPower * Math.cos(radians)
-                + strafePower * Math.sin(radians);
-        calculatedStrafePower = -forwardPower * Math.sin(radians)
-                + strafePower * Math.cos(radians);
-
-        powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
-
     }
 
 }

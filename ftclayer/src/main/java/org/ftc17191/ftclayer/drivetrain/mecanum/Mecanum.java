@@ -104,9 +104,9 @@ public class Mecanum {
             double heading = imu.getHeadingRadians();
 
             calculatedForwardPower = forwardPower * Math.cos(heading)
-                    + strafePower * Math.sin(heading);
-            calculatedStrafePower = -forwardPower * Math.sin(heading)
-                    + strafePower * Math.cos(heading);
+                    + -strafePower * Math.sin(heading);
+            calculatedStrafePower = forwardPower * Math.sin(heading)
+                    + -strafePower * Math.cos(heading);
 
             powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
         } else {

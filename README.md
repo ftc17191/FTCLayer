@@ -8,6 +8,9 @@ FTC Layer is designed to make programming easier, less time consuming, and simpl
 
 ## Install
 
+### Want to install to Onbotjava?
+[Click Here](https://youtu.be/Te94mwb3q4E)
+***
 ### Want to create a repository with FTC Layer preinstalled?
 [Click Here](https://github.com/ftc17191/FTCLayer-quickstart)
 ***

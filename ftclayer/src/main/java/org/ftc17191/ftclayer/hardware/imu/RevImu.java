@@ -42,12 +42,28 @@ public class RevImu {
         return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).firstAngle - Math.toRadians(headingOffset);
     }
 
+    public double getAbsoluteHeading() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).firstAngle;
+    }
+
+    public double getAbsoluteHeadingRadians() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).firstAngle;
+    }
+
     public double getPitch() {
         return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).secondAngle - pitchOffset;
     }
 
     public double getPitchRadians() {
         return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).secondAngle - Math.toRadians(pitchOffset);
+    }
+
+    public double getAbsolutePitch() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).secondAngle;
+    }
+
+    public double getAbsolutePitchRadians() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).secondAngle ;
     }
 
     public double getRoll() {
@@ -58,11 +74,19 @@ public class RevImu {
         return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).thirdAngle - Math.toRadians(rollOffset);
     }
 
+    public double getAbsoluteRoll() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle;
+    }
+
+    public double getAbsoluteRollRadians() {
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS).thirdAngle;
+    }
+
 
     public void reset()
     {
-        headingOffset = getHeading();
-        pitchOffset = getPitch();
-        rollOffset = getRoll();
+        headingOffset = getAbsoluteHeading();
+        pitchOffset = getAbsolutePitch();
+        rollOffset = getAbsoluteRoll();
     }
 }

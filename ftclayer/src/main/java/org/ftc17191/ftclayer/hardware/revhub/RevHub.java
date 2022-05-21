@@ -14,15 +14,40 @@ import org.ftc17191.ftclayer.hardware.servos.servoex.ServoEx;
  * it may be less cleaner in certain scenarios but it'll prevent bugs when changing ids.
  */
 
+/**
+ * The type Rev hub.
+ */
 public class RevHub {
-    // Ids and hardware map
+    /**
+     * The Hardware map.
+     */
     public HardwareMap hardwareMap;
+    /**
+     * The Motor ids.
+     */
     public String motor_ids[] = new String[4];
+    /**
+     * The Servo ids.
+     */
     public String servo_ids[] = new String[6];
+    /**
+     * The 2 c ids.
+     */
     public String i2c_ids[] = new String[4];
+    /**
+     * The Motor.
+     */
     public MotorEx motor[] = new MotorEx[4];
+    /**
+     * The Servo.
+     */
     public ServoEx servo[] = new ServoEx[6];
 
+    /**
+     * Instantiates a new Rev hub.
+     *
+     * @param parameters the parameters
+     */
     public RevHub(RevHubParameters parameters)
     {
         hardwareMap = parameters.hardwareMap;

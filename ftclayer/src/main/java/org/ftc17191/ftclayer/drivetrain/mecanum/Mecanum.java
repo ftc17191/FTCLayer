@@ -1,6 +1,5 @@
 package org.ftc17191.ftclayer.drivetrain.mecanum;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -178,6 +177,62 @@ public class Mecanum {
                     + -strafePower * Math.sin(heading);
             calculatedStrafePower = forwardPower * Math.sin(heading)
                     + -strafePower * Math.cos(heading);
+            powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
+        } else {
+            powerDrive(0, 0, 0);
+        }
+    }
+
+    /**
+     * Power absolute drive. Uses the Imu to have independent translation and orientation.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     * @param heading      the current heading in degrees
+     */
+    public void powerAbsoluteDrive(double forwardPower, double strafePower, double turningPower, double heading)
+    {
+        // This calculates the powers based off the position of the imu given earlier.
+
+        // Turning is kept the same, as its the same movement no matter the heading
+        // Check if the imu was specified
+        if (imu != null)
+        {
+            double calculatedForwardPower, calculatedStrafePower;
+            heading = Math.toRadians(heading);
+
+            calculatedForwardPower = forwardPower * Math.cos(heading)
+                    + strafePower * Math.sin(heading);
+            calculatedStrafePower = -forwardPower * Math.sin(heading)
+                    + strafePower * Math.cos(heading);
+            powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
+        } else {
+            powerDrive(0, 0, 0);
+        }
+    }
+    /**
+     * Power absolute drive. Uses the Imu to have independent translation and orientation.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     * @param heading      the current heading in radians
+     */
+    public void powerAbsoluteDriveRadians(double forwardPower, double strafePower, double turningPower, double heading)
+    {
+        // This calculates the powers based off the position of the imu given earlier.
+
+        // Turning is kept the same, as its the same movement no matter the heading
+        // Check if the imu was specified
+        if (imu != null)
+        {
+            double calculatedForwardPower, calculatedStrafePower;
+
+            calculatedForwardPower = forwardPower * Math.cos(heading)
+                    + strafePower * Math.sin(heading);
+            calculatedStrafePower = -forwardPower * Math.sin(heading)
+                    + strafePower * Math.cos(heading);
             powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
         } else {
             powerDrive(0, 0, 0);

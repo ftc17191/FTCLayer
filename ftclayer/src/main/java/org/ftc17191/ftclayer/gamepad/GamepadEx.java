@@ -6,15 +6,32 @@ import org.firstinspires.ftc.robotcore.internal.ui.GamepadUser;
 import org.ftc17191.ftclayer.util.Util;
 
 
+/**
+ * The type Gamepad ex.
+ */
 public class GamepadEx {
 
+    /**
+     * The Gamepad.
+     */
     Gamepad gamepad = new Gamepad();
 
+    /**
+     * Instantiates a new Gamepad ex.
+     *
+     * @param user the user
+     */
     public GamepadEx(GamepadUser user) {
         gamepad.setUser(user);
     }
 
 
+    /**
+     * Is button activated boolean.
+     *
+     * @param button the button
+     * @return the boolean
+     */
     public boolean isButtonActivated(GamepadButtons.GamepadDigital button) {
 
 
@@ -94,6 +111,12 @@ public class GamepadEx {
         return false;
     }
 
+    /**
+     * Gets analog float.
+     *
+     * @param analog the analog
+     * @return the analog float
+     */
     public float getAnalogFloat(GamepadButtons.GamepadAnalog analog) {
         switch (gamepad.getUser()) {
             case ONE:

@@ -1,6 +1,5 @@
 package org.ftc17191.ftclayer.drivetrain.mecanum;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -9,16 +8,41 @@ import org.ftc17191.ftclayer.hardware.imu.RevImu;
 import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
 
 
-@Disabled
+/**
+ * The type Mecanum.
+ */
 public class Mecanum {
 
+    /**
+     * The Front right motor.
+     */
     public MotorEx frontRightMotor;
+    /**
+     * The Front left motor.
+     */
     public MotorEx frontLeftMotor;
+    /**
+     * The Back right motor.
+     */
     public MotorEx backRightMotor;
+    /**
+     * The Back left motor.
+     */
     public MotorEx backLeftMotor;
+    /**
+     * The Imu.
+     */
     public RevImu imu = null;
 
 
+    /**
+     * Instantiates a new Mecanum.
+     *
+     * @param frontRightMotor the front right motor
+     * @param frontLeftMotor  the front left motor
+     * @param backRightMotor  the back right motor
+     * @param backLeftMotor   the back left motor
+     */
     public Mecanum(
             DcMotorEx frontRightMotor,
             DcMotorEx frontLeftMotor,
@@ -31,6 +55,15 @@ public class Mecanum {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Instantiates a new Mecanum.
+     *
+     * @param hardwareMap     the hardware map
+     * @param frontRightMotor the front right motor
+     * @param frontLeftMotor  the front left motor
+     * @param backRightMotor  the back right motor
+     * @param backLeftMotor   the back left motor
+     */
     public Mecanum(
             HardwareMap hardwareMap,
             String frontRightMotor,
@@ -45,6 +78,15 @@ public class Mecanum {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Instantiates a new Mecanum that can use powerAbsoluteDrive.
+     *
+     * @param frontRightMotor the front right motor
+     * @param frontLeftMotor  the front left motor
+     * @param backRightMotor  the back right motor
+     * @param backLeftMotor   the back left motor
+     * @param imu             the imu
+     */
     public Mecanum(
             DcMotorEx frontRightMotor,
             DcMotorEx frontLeftMotor,
@@ -59,6 +101,16 @@ public class Mecanum {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Instantiates a new Mecanum that can use powerAbsoluteDrive.
+     *
+     * @param hardwareMap     the hardware map
+     * @param frontRightMotor the front right motor
+     * @param frontLeftMotor  the front left motor
+     * @param backRightMotor  the back right motor
+     * @param backLeftMotor   the back left motor
+     * @param imu             the imu
+     */
     public Mecanum(
             HardwareMap hardwareMap,
             String frontRightMotor,
@@ -75,7 +127,11 @@ public class Mecanum {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    // Sets motor run mode
+    /**
+     * Sets run mode for all 4 motors.
+     *
+     * @param mode the mode
+     */
     public void setRunMode(DcMotor.RunMode mode) {
         frontRightMotor.setMode(mode);
         frontLeftMotor.setMode(mode);
@@ -84,6 +140,13 @@ public class Mecanum {
     }
 
 
+    /**
+     * Power based driving.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     */
     public void powerDrive(double forwardPower, double strafePower, double turningPower) {
         setRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setPower(-forwardPower - strafePower - turningPower);
@@ -92,6 +155,13 @@ public class Mecanum {
         backLeftMotor.setPower(forwardPower + strafePower - turningPower);
     }
 
+    /**
+     * Power absolute drive. Uses the Imu to have independent translation and orientation.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     */
     public void powerAbsoluteDrive(double forwardPower, double strafePower, double turningPower)
     {
         // This calculates the powers based off the position of the imu given earlier.
@@ -107,7 +177,62 @@ public class Mecanum {
                     + -strafePower * Math.sin(heading);
             calculatedStrafePower = forwardPower * Math.sin(heading)
                     + -strafePower * Math.cos(heading);
+            powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
+        } else {
+            powerDrive(0, 0, 0);
+        }
+    }
 
+    /**
+     * Power absolute drive. Uses the Imu to have independent translation and orientation.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     * @param heading      the current heading in degrees
+     */
+    public void powerAbsoluteDrive(double forwardPower, double strafePower, double turningPower, double heading)
+    {
+        // This calculates the powers based off the position of the imu given earlier.
+
+        // Turning is kept the same, as its the same movement no matter the heading
+        // Check if the imu was specified
+        if (imu != null)
+        {
+            double calculatedForwardPower, calculatedStrafePower;
+            heading = Math.toRadians(heading);
+
+            calculatedForwardPower = forwardPower * Math.cos(heading)
+                    + strafePower * Math.sin(heading);
+            calculatedStrafePower = -forwardPower * Math.sin(heading)
+                    + strafePower * Math.cos(heading);
+            powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
+        } else {
+            powerDrive(0, 0, 0);
+        }
+    }
+    /**
+     * Power absolute drive. Uses the Imu to have independent translation and orientation.
+     *
+     * @param forwardPower the forward power
+     * @param strafePower  the strafe power
+     * @param turningPower the turning power
+     * @param heading      the current heading in radians
+     */
+    public void powerAbsoluteDriveRadians(double forwardPower, double strafePower, double turningPower, double heading)
+    {
+        // This calculates the powers based off the position of the imu given earlier.
+
+        // Turning is kept the same, as its the same movement no matter the heading
+        // Check if the imu was specified
+        if (imu != null)
+        {
+            double calculatedForwardPower, calculatedStrafePower;
+
+            calculatedForwardPower = forwardPower * Math.cos(heading)
+                    + strafePower * Math.sin(heading);
+            calculatedStrafePower = -forwardPower * Math.sin(heading)
+                    + strafePower * Math.cos(heading);
             powerDrive(calculatedForwardPower,calculatedStrafePower, turningPower);
         } else {
             powerDrive(0, 0, 0);

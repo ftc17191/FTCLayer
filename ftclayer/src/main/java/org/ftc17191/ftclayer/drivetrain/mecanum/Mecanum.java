@@ -211,6 +211,7 @@ public class Mecanum {
             powerDrive(0, 0, 0);
         }
     }
+
     /**
      * Power absolute drive. Uses the Imu to have independent translation and orientation.
      *
@@ -239,4 +240,83 @@ public class Mecanum {
         }
     }
 
+    /**
+     * Drive at an angle.
+     *
+     * @param angle the angle in degrees
+     */
+    public void driveAngle(double angle)
+    {
+        angle -= 90;
+        angle = -angle;
+
+        double forward = -Math.sin(Math.toRadians(angle));
+        double strafe = Math.cos(Math.toRadians(angle));
+
+        powerDrive(forward, strafe, 0);
+    }
+
+    /**
+     * Drive at an angle in radians.
+     *
+     * @param angle the angle in radians
+     */
+    public void driveAngleRadians(double angle)
+    {
+        angle -= Math.toRadians(90);
+        angle = -angle;
+        double forward = -Math.sin(angle);
+        double strafe = Math.cos(angle);
+
+        powerDrive(forward, strafe, 0);
+    }
+
+
+    /**
+     * Drive at an angle, with the a speed factor ranging 0 and 1.
+     *
+     * @param angle the angle in degrees
+     * @param speed the speed (0-1)
+     */
+    public void driveAngle(double angle, double speed)
+    {
+        angle -= 90;
+        angle = -angle;
+
+        double forward = -Math.sin(Math.toRadians(angle));
+        double strafe = Math.cos(Math.toRadians(angle));
+        forward = forward * speed;
+        strafe = strafe * speed;
+
+
+        powerDrive(forward, strafe, 0);
+    }
+
+
+    /**
+     * Drive at an angle in radians, with a speed factor ranging from 0 and 1.
+     *
+     * @param angle the angle in radians
+     * @param speed the speed (0-1)
+     */
+    public void driveAngleRadians(double angle, double speed)
+    {
+        angle -= Math.toRadians(90);
+        angle = -angle;
+        double forward = -Math.sin(angle);
+        double strafe = Math.cos(angle);
+        forward = forward * speed;
+        strafe = strafe * speed;
+
+        powerDrive(forward, strafe, 0);
+    }
+
+
+    /**
+     * Stop.
+     */
+    public void stop()
+    {
+        powerDrive(0, 0, 0);
+    }
 }

@@ -1,4 +1,4 @@
-package org.ftc17191.ftclayer.drivetrain.mecanum;
+package org.ftc17191.ftclayer.drivetrain.xdrive;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -9,9 +9,9 @@ import org.ftc17191.ftclayer.hardware.motors.motorex.MotorEx;
 
 
 /**
- * The type Mecanum.
+ * The type XDrive.
  */
-public class Mecanum {
+public class XDrive {
 
     /**
      * The Front right motor.
@@ -36,14 +36,14 @@ public class Mecanum {
 
 
     /**
-     * Instantiates a new Mecanum.
+     * Instantiates a new XDrive.
      *
      * @param frontRightMotor the front right motor
      * @param frontLeftMotor  the front left motor
      * @param backRightMotor  the back right motor
      * @param backLeftMotor   the back left motor
      */
-    public Mecanum(
+    public XDrive(
             DcMotorEx frontRightMotor,
             DcMotorEx frontLeftMotor,
             DcMotorEx backRightMotor,
@@ -56,7 +56,7 @@ public class Mecanum {
     }
 
     /**
-     * Instantiates a new Mecanum.
+     * Instantiates a new XDrive.
      *
      * @param hardwareMap     the hardware map
      * @param frontRightMotor the front right motor
@@ -64,7 +64,7 @@ public class Mecanum {
      * @param backRightMotor  the back right motor
      * @param backLeftMotor   the back left motor
      */
-    public Mecanum(
+    public XDrive(
             HardwareMap hardwareMap,
             String frontRightMotor,
             String frontLeftMotor,
@@ -79,7 +79,7 @@ public class Mecanum {
     }
 
     /**
-     * Instantiates a new Mecanum that can use powerAbsoluteDrive.
+     * Instantiates a new XDrive that can use powerAbsoluteDrive.
      *
      * @param frontRightMotor the front right motor
      * @param frontLeftMotor  the front left motor
@@ -87,7 +87,7 @@ public class Mecanum {
      * @param backLeftMotor   the back left motor
      * @param imu             the imu
      */
-    public Mecanum(
+    public XDrive(
             DcMotorEx frontRightMotor,
             DcMotorEx frontLeftMotor,
             DcMotorEx backRightMotor,
@@ -102,7 +102,7 @@ public class Mecanum {
     }
 
     /**
-     * Instantiates a new Mecanum that can use powerAbsoluteDrive.
+     * Instantiates a new XDrive that can use powerAbsoluteDrive.
      *
      * @param hardwareMap     the hardware map
      * @param frontRightMotor the front right motor
@@ -111,7 +111,7 @@ public class Mecanum {
      * @param backLeftMotor   the back left motor
      * @param imu             the imu
      */
-    public Mecanum(
+    public XDrive(
             HardwareMap hardwareMap,
             String frontRightMotor,
             String frontLeftMotor,

@@ -17,6 +17,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
  */
 public class RevImu {
 
+    public enum ROTATIONAL_DIRECTIONS {
+        PITCH, HEADING, ROLL
+    }
+
     /**
      * The Imu.
      */
